@@ -42,7 +42,7 @@ SKAdNetwork有两个API，一个是registerAppForAdNetworkAttribution；一个�
 
 高3位与低3位根据以上对照表组合出不同的事件，如35（100011）表示10 level completed并且purchase > $5。实际中事件的定义需结合具体的业务及应用场景进行定义，本DEMO仅供参考。
 
-注：文件`LJHConversion.h`和`LJHConversion.m`参考了项目https://github.com/2ndpotion/ElixiriOS，原始项目是用swift编写的，本DEMO参考其设计用objective-c进行实现。
+注：文件`LJHConversion.h`和`LJHConversion.m`参考了项目https://github.com/2ndpotion/ElixiriOS ，原始项目是用swift编写的，本DEMO参考其设计用objective-c进行实现。
 
 
 
