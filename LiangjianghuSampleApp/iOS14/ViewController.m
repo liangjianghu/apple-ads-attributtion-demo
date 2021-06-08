@@ -13,6 +13,7 @@
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 #import "LJHConversion.h"
 #import "ConversionViewController.h"
+#import <AdServices/AdServices.h>
 
 NSError *gError = nil;
 
@@ -178,6 +179,50 @@ NSError *gError = nil;
             [self alertWithTitle:@"提示" andMessage:@"请在设置-隐私里打开广告跟踪"];
         }
         [self refreshStatus];
+    }
+}
+
+- (void)postRequestWithToken:(NSString *)token {
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    NSURL *url = [NSURL URLWithString:@"https://api-adservices.apple.com/api/v1/"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPMethod:@"POST"];
+    
+    NSData* postData = [token dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+
+    __typeof__(self) weakSelf = self;
+    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSError *resError;
+        NSMutableDictionary *resDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&resError];
+        NSLog(@"%@", resDic);
+        NSString *str = @"";
+        str = [NSString stringWithFormat:@"AdService归因数据 resDic=%@", resDic];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf alertWithTitle:@"提示" andMessage:[NSString stringWithFormat:@"%@", str]];
+        });
+    }];
+
+    [postDataTask resume];
+}
+
+- (IBAction)showDialog2:(id)sender {
+    if (@available(iOS 14.3, *)) {
+        NSError *error;
+        NSString *token = [AAAttribution attributionTokenWithError:&error];
+        NSLog(@"token=%@", token);
+        if (token != nil) {
+            [self postRequestWithToken:token];
+        }
+    } else {
+        // Fallback on earlier versions
     }
 }
 
