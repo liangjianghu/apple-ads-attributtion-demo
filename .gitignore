@@ -1,0 +1,125 @@
+# Xcode
+#
+build/
+*.xcworkspace
+!default.xcworkspace
+xcuserdata/
+DerivedData/
+.idea/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+.DS_Store
+
+# Swift Package Manager
+#
+Packages
+.swiftpm
+.build/
+
+# CocoaPods
+#
+Pods/
+Podfile.lock
+*.xcscmblueprint
+
+# Carthage
+#
+Carthage/Build
+
+# Accio dependency manager
+#
+Dependencies/
+.accio/
+
+# Fastlane
+#
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/readme.md
+fastlane/.env
+fastlane/metadata
+fastlane/Appfile
+fastlane/Fastfile
+
+# Code signing
+#
+*.cert
+*.cer
+*.mobileprovision
+*.p12
+
+# AppCenter
+#
+appcenter-pre-build.sh
+
+# Playgrounds
+#
+timeline.xctimeline
+playground.xcworkspace
+
+# SwiftUI previews
+#
+*.preview-thumbnails
+
+# User-specific files
+#
+*.rsync*
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+*.xccheckout
+*.moved-aside
+*.xcuserdatad
+
+# Objective-C/Swift specific
+#
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Bundle artifacts
+#
+*.xcarchive
+
+# Indexing
+#
+*.idx
+
+# Build results
+#
+build/
+
+# Core Data
+#
+*.xccurrentversion
+
+# Auxiliary Files
+#
+*.plist
+
+# Unit test logs
+#
+test_output/
+
+# Enviornment variable files
+#
+.env*
+
+# Markdown files with sensitive data (optional)
+#
+*.md
+
+# Logs and databases
+#
+*.log
+*.sql
+
+# Generated source files
+#
+*.generated.swift
